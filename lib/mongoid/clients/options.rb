@@ -43,8 +43,7 @@ module Mongoid
       end
 
       def mongo_client
-        opts = persistence_options
-        if opts
+        if opts = persistence_options && persistence_options.dup
           if opts[:client]
             client = Clients.with_name(opts[:client])
           else
